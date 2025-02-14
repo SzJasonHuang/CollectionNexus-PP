@@ -18,4 +18,20 @@ public class TestCard {
     void readCardInfoTest() {
         assertEquals("Dragon, MTG, Rare, NM, $10",testCard.readCardInfo());
     }
+
+    @Test
+    void increaseQuantityTest() { 
+        assertEquals(1,testCard.getQuantity());
+        testCard.increaseQuantity();
+        assertEquals(2,testCard.getQuantity());
+    }
+
+    @Test
+    void increaseQuantityTwiceTest() { 
+        assertEquals(1,testCard.getQuantity());
+        testCard.increaseQuantity();
+        assertEquals(2,testCard.getQuantity());
+        testCard.increaseQuantity();
+        assertEquals(3,testCard.getQuantity());
+    }
 }
