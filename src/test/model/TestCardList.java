@@ -18,7 +18,7 @@ public class TestCardList {
     void runBefore(){
         card1 = new Card("bad", "rare", "jason", "baseball", 10);
         card2 = new Card("decent", "mythic", "Vincent", "Basketball", 100);
-        card2 = new Card("decent", "Uncommon", "Michael","Basketball", 1);
+        card3 = new Card("decent", "Uncommon", "Michael","Basketball", 1);
         testcardlist = new CardList();
     }
 
@@ -61,7 +61,6 @@ public class TestCardList {
         testcardlist.addCard(card1);
         testcardlist.addCard(card2);
         ArrayList<String> testlist = new ArrayList<String>(); 
-        testlist.add(card1.getName());
         testlist.add(card1.getName());
         testlist.add(card2.getName());
         assertEquals(120,testcardlist.calculateValue(testlist));
