@@ -14,7 +14,7 @@ public class Card {
  
     // EFFECTS: Create a new card based on the its condition, rarity, name, type and price. The newly created
     // card is not sold and the initial quantity is set to 1. 
-    public Card (String condition, String rarity, String name, String type, int price) {
+    public Card(String condition, String rarity, String name, String type, int price) {
         this.condition = condition; 
         this.rarity = rarity; 
         this.name = name;
@@ -65,6 +65,11 @@ public class Card {
     // EFFECTS: returns the sold status of card
     public boolean getSold() {
         return sold;
+    }
+
+    // EFFECTS: returns the quantity of card
+    public int getQuantity() { 
+        return quantity;
     }
     
 

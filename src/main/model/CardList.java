@@ -6,20 +6,19 @@ import model.Card;
 public class CardList {
     private ArrayList<Card> mybinder; 
 
-    public CardList(){
+    public CardList() {
         mybinder = new ArrayList<Card>();
     }
     
     // MODIFIES: this, Card
-    // EFFECTS: Add a card into the owner's binder, if the added card's name already exsist in the collection, increase the card's 
+    // EFFECTS: Add a card into the owner's binder, if the added card's 
+    // name already exsist in the collection, increase the card's 
     // quantity by one instead of mybinder.add() and return false.
     public Boolean addCard(Card newcard) { 
         if (mybinder.contains(newcard)) {
             newcard.increaseQuantity();
             return false;
-        }
-
-        else {
+        } else {
             mybinder.add(newcard);
             return true; 
         }
@@ -37,9 +36,17 @@ public class CardList {
     }
     
 
-    //EFFECTS: Return the value of the list of cards names given. 
-    public int calculateValue (ArrayList<String> loc) {
-        return 0;
+    //EFFECTS: Return the value of the list of cards names given, 
+    // returns 0 if no cards in the input list was found in the collection
+    public int calculateValue(ArrayList<String> loc) {
+        int totalvalue = 0;
+        for (String s : loc) {
+            Card card = searchCard(s);
+            if (card != null) {
+                totalvalue += card.getPrice() * card.getQuantity();
+            }
+        }
+        return totalvalue;
     }
 
     //EFFECTS: returns the user's collection.
