@@ -15,7 +15,7 @@ public class TestCardList {
     Card card3;
 
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         card1 = new Card("bad", "rare", "jason", "baseball", 10);
         card2 = new Card("decent", "mythic", "Vincent", "Basketball", 100);
         card3 = new Card("decent", "Uncommon", "Michael","Basketball", 1);
@@ -76,5 +76,26 @@ public class TestCardList {
     void testCardListSearchCardNotExist() {
         testcardlist.addCard(card1);
         assertEquals(null,testcardlist.searchCard("Kevin"));
+    }
+
+    @Test
+    void testRemoveCardFromWishList() {
+        testcardlist.addCard(card1);
+        assertEquals(1,testcardlist.getMyBinder().size());
+        testcardlist.removeCardFromList("jason");
+        assertEquals(0,testcardlist.getMyBinder().size());
+    }
+
+    @Test
+    void testRemoveMutipleCardsFromWishList() {
+        testcardlist.addCard(card1);
+        testcardlist.addCard(card2);
+        assertEquals(2,testcardlist.getMyBinder().size());
+        testcardlist.removeCardFromList("jason");
+        assertEquals(1,testcardlist.getMyBinder().size());
+        assertFalse(testcardlist.getMyBinder().contains(card1));
+        testcardlist.removeCardFromList("Vincent");
+        assertEquals(0,testcardlist.getMyBinder().size());
+        assertFalse(testcardlist.getMyBinder().contains(card2));
     }
 }
