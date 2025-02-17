@@ -67,6 +67,16 @@ public class TestCardList {
     }
 
     @Test
+    void testCardListCalculateValueNotFound() {
+        testcardlist.addCard(card1);
+        testcardlist.addCard(card1);
+        testcardlist.addCard(card2);
+        ArrayList<String> testlist = new ArrayList<String>(); 
+        testlist.add(card3.getName());
+        assertEquals(0,testcardlist.calculateValue(testlist));
+    }
+
+    @Test
     void testCardListSearchCardFound() {
         testcardlist.addCard(card1);
         assertEquals(card1,testcardlist.searchCard(card1.getName()));
@@ -97,5 +107,16 @@ public class TestCardList {
         testcardlist.removeCardFromList("Vincent");
         assertEquals(0,testcardlist.getMyBinder().size());
         assertFalse(testcardlist.getMyBinder().contains(card2));
+    }
+
+    @Test
+    void testRemoveCardFromWishListInvalid() {
+        testcardlist.addCard(card1);
+        testcardlist.addCard(card2);
+        assertEquals(2,testcardlist.getMyBinder().size());
+        testcardlist.removeCardFromList("monkey");
+        assertEquals(2,testcardlist.getMyBinder().size());
+        assertTrue(testcardlist.getMyBinder().contains(card1));
+        assertTrue(testcardlist.getMyBinder().contains(card2));
     }
 }
