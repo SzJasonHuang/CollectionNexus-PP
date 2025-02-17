@@ -18,7 +18,7 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 
 ## User Stories
 
-1. As a user, I want to be able to add a card or multiple cards to my collection.
+1. As a user, I want to be able to add a card to my collection.
 2. As a user, I want to be able to create a wishlist and add/remove cards from the wishlist.
 3. As a user, I want to be able to be select a card from my collection and view its details. 
 4. As a user, I want to be able to select multiple cards in my collection and calculate their values. 
