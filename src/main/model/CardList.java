@@ -1,9 +1,11 @@
 package model;
-
+import persistence.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public class CardList {
+public class CardList implements Writable{
     private ArrayList<Card> mybinder;
 
     public CardList() {
@@ -65,6 +67,32 @@ public class CardList {
                 return;
             }
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "binder");
+        json.put("cards", cardsToJson());
+        return json;
+    }
+    
+    public JSONObject wishlistToJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "wishlist");
+        json.put("cards", cardsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns cards in this binder/wishlist as a JSON array
+    private JSONArray cardsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Card c : mybinder) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 
 }
