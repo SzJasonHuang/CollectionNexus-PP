@@ -23,3 +23,5 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 3. As a user, I want to be able to be select a card from my collection and view its details. 
 4. As a user, I want to be able to select multiple cards in my collection and calculate their values. 
 5. As a user, I want to be able to view all card's details from my exsisting collection.
+6. As a user, I want to be able to save my edited (final state) collection and wishlist to file. 
+7. As a user, I want to be able to load my collection and wishlist from my file.
