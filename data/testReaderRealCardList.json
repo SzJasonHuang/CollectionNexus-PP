@@ -1,0 +1,24 @@
+{
+    "cards": [
+    {
+        "name": "Kobe",
+        "type": "Basketball",
+        "condition": "Near Mint",
+        "rarity": "Rare",
+        "price": 20,
+        "sold": false,
+        "quantity": 1
+    },
+    {
+        "name": "Lebron",
+        "type": "Basketball",
+        "condition": "Near Mint",
+        "rarity": "Rare",
+        "price": 100,
+        "sold": false,
+        "quantity": 1
+    }
+    ],
+
+    "name": "binder"
+}
