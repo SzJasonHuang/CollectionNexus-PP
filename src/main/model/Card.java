@@ -73,6 +73,18 @@ public class Card implements Writable{
     public int getQuantity() { 
         return quantity;
     }
+
+    public void setSold(boolean status){
+        this.sold = status;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
     
     
     @Override
