@@ -1,0 +1,23 @@
+{
+    "cards": [
+        {
+            "sold": false,
+            "condition": "Near Mint",
+            "quantity": 1,
+            "price": 20,
+            "name": "Dragon",
+            "type": "MTG",
+            "rarity": "Rare"
+        },
+        {
+            "sold": false,
+            "condition": "Near Mint",
+            "quantity": 2,
+            "price": 100,
+            "name": "Merfolk",
+            "type": "MTG",
+            "rarity": "Rare"
+        }
+    ],
+    "name": "binder"
+}
