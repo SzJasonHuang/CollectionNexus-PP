@@ -1,10 +1,12 @@
 package model;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.*;
 // Represents a card having with its name, current condition, card rarity, the type of card, 
 // the price represented by an integer, current stock status of the card and finally the quantity of the card. 
-public class Card implements Writable{
+
+public class Card implements Writable {
     private String condition;
     private String rarity;
     private String name;
@@ -74,11 +76,11 @@ public class Card implements Writable{
         return quantity;
     }
 
-    public void setSold(boolean status){
+    public void setSold(boolean status) {
         this.sold = status;
     }
 
-    public void setQuantity(int quantity){
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
