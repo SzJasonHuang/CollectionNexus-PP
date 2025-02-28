@@ -54,12 +54,12 @@ public class TestJsonWriter {
             CardList cl = new CardList();
             cl.addCard(card1);
             cl.addCard(card2);
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterRealCardList.json");
             writer.open();
             writer.write(cl);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterRealCardList.json");
             cl = reader.read();
             ArrayList<Card> thiscardlist = cl.getMyBinder();
 

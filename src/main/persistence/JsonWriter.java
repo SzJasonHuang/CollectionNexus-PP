@@ -1,10 +1,11 @@
 package persistence;
+
 import org.json.*;
 import java.io.*;
 import model.CardList;
 
 // Represents a writer that writes JSON representation of CardList to file.
-public class JsonWriter{
+public class JsonWriter {
     private static final int TAB = 4; 
     private PrintWriter writer;
     private String destination;
