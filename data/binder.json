@@ -1,4 +1,12 @@
 {
-    "cards": [],
+    "cards": [{
+        "sold": false,
+        "condition": "i",
+        "quantity": 1,
+        "price": 99,
+        "name": "i",
+        "type": "jn",
+        "rarity": "i"
+    }],
     "name": "binder"
 }
