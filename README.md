@@ -25,3 +25,14 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 5. As a user, I want to be able to view all card's details from my exsisting collection.
 6. As a user, I want to be able to save my edited (final state) collection and wishlist to file. 
 7. As a user, I want to be able to load my collection and wishlist from my file.
+
+# Instructions for End User
+
+- You can generate the first required action related to the user story "add a card to my collection" by filling out all the card infos and click the add to binder button. A prompt should pop up on the display area showing whether it succeeded or failed. 
+- You can generate the second required action related to the user story "add a card to my wishlist" by filling out all the card infos and click the add to binder button. A prompt should pop up on the display area showing whether it succeeded or failed. 
+- You can generate the third required action related to the user story "search for the details of a card" by filling out the card name in the search section and click the Search Binder button. 
+- You can generate the fourth required action related to the user story "view all the details of cards from my binder" by simply clicking the view cards in binder button. 
+- You can generate the fifth required action related to the user story "view all the details of cards from my wishlist" by simply clicking the view cards in wishlist button. 
+- You can find my visual component on the display area.
+- You can save the state of my application by simply clicking the save button. It saves both the user's binder and wishlist.
+- You can reload the state of my application by simply clicking the load button. It loads both the user's binder and wishlist.
