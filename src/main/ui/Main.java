@@ -1,14 +1,21 @@
 package ui;
 
 import java.io.FileNotFoundException;
-
+import javax.swing.SwingUtilities;
 public class Main {
     public static void main(String[] args) throws Exception {
-        try {
-            new CollectionNexusApp();
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to run application: file not found");
-        }
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            @Override
+            public void run(){
+                new CollectionNexusJFrame();              
+            }
+
+        });
+
 
     }
 

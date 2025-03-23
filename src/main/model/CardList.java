@@ -60,15 +60,17 @@ public class CardList implements Writable {
 
     // MODIFIES: this
     // EFFECTS: removes a single card from the user's binder/wishlist
-    public void removeCardFromList(String target) {
+    public Boolean removeCardFromList(String target) {
         Iterator<Card> iterator = mybinder.iterator();
         while (iterator.hasNext()) {
             Card card = iterator.next();
             if (card.getName().equalsIgnoreCase(target)) {
                 iterator.remove();
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     @Override
@@ -87,7 +89,7 @@ public class CardList implements Writable {
         for (Card c : mybinder) {
             jsonArray.put(c.toJson());
         }
-
+        
         return jsonArray;
     }
 
