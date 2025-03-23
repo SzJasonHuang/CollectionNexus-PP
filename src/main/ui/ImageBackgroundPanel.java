@@ -5,11 +5,13 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class ImageBackgroundPanel extends JPanel{
+//ImageBackgroundPanel extends JPanel to properly setup Lebron Image
+public class ImageBackgroundPanel extends JPanel {
     private Image backgroundImage;
 
-    public ImageBackgroundPanel(String path) {
-        this.backgroundImage = new ImageIcon(path).getImage();
+    // REQUIRES: true = Files.exists(Path.get(source));
+    public ImageBackgroundPanel(String source) {
+        this.backgroundImage = new ImageIcon(source).getImage();
     }
 
     @Override
@@ -18,6 +20,3 @@ public class ImageBackgroundPanel extends JPanel{
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
     }
 }
-
-    
-

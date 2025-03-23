@@ -12,10 +12,12 @@ import model.CardList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+//Inspiration taken from the Teller App for JSON implementation and Space Invaders for GUI
+//Connection Nexus App, extends JFrame for GUI purposes
 public class CollectionNexusJFrame extends JFrame {
     private static final String JSON_STORE_binder = "./data/binder.json";
     private static final String JSON_STORE_wishlist = "./data/wishlist.json";
-    private static final String Lebron_Image = "./data/lerbon.png";
+    private static final String Lebron_Image = "./data/lebron.png";
 
     private CardList binder;
     private CardList wishlist;
@@ -31,147 +33,158 @@ public class CollectionNexusJFrame extends JFrame {
     private JTextField priceInput;
     private JTextField searchInput;
     private JTextField removeInput;
+    private JPanel controlPanel = new JPanel();
 
     private JTextArea displayArea;
 
     // EFFECTS: Runs the CollectionNexus APP
     public CollectionNexusJFrame() {
         super("CollectionNexus");
-        //Data Initialization
+        // Data Initialization
         binder = new CardList();
         wishlist = new CardList();
-        //JSON Read/Writer Initialization
+        // JSON Read/Writer Initialization
         jsonWriter = new JsonWriter(JSON_STORE_binder);
         jsonWriter1 = new JsonWriter(JSON_STORE_wishlist);
         jsonReader = new JsonReader(JSON_STORE_binder);
         jsonReader1 = new JsonReader(JSON_STORE_wishlist);
-        //GUI Setup
+        // GUI Setup
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 800);
         setLocationRelativeTo(null);
-        //Local Helper
+        // Local Helper
         setUpGUI();
         setVisible(true);
     }
 
-    //MODIFIES: this
-    //EFFECTS: Set up all panels, buttons and visual component, adds all panels to JFrame
+    // MODIFIES: this
+    // EFFECTS: Set up all panels, buttons and visual component, adds all panels to
+    // JFrame
     public void setUpGUI() {
         ImageBackgroundPanel mainPanel = new ImageBackgroundPanel(Lebron_Image);
         mainPanel.setLayout(new BorderLayout());
-
-        //Display Area
         displayArea = new JTextArea(14, 50);
-        displayArea.setEditable(false);
-        displayArea.setFont(new Font("Monospaced", Font.BOLD, 12));
-        displayArea.setBackground(new Color(230, 240, 255));
-        displayArea.setOpaque(false);
+        createDisplayArea(displayArea);
         JScrollPane scrollableDisplay = new JScrollPane(displayArea);
         scrollableDisplay.getViewport().setOpaque(false);
         scrollableDisplay.setOpaque(false);
         mainPanel.add(scrollableDisplay, BorderLayout.CENTER);
-
-        //Right-side Control Panel (Stacked Vertically)
-        JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        mainPanel.add(controlPanel, BorderLayout.EAST);
-
-        //Input Fields Panel 
-        JPanel inputFieldsPanel = new JPanel(new GridLayout(5, 2, 4, 4));
-        inputFieldsPanel.setBorder(BorderFactory.createTitledBorder("Card Info"));
-
-        inputFieldsPanel.add(new JLabel("Card Name:"));
-        nameInput = new JTextField(15);
-        inputFieldsPanel.add(nameInput);
-
-        inputFieldsPanel.add(new JLabel("Condition:"));
-        conditionInput = new JTextField(15);
-        inputFieldsPanel.add(conditionInput);
-
-        inputFieldsPanel.add(new JLabel("Rarity:"));
-        rarityInput = new JTextField(15);
-        inputFieldsPanel.add(rarityInput);
-
-        inputFieldsPanel.add(new JLabel("Type:"));
-        typeInput = new JTextField(15);
-        inputFieldsPanel.add(typeInput);
-
-        inputFieldsPanel.add(new JLabel("Price:"));
-        priceInput = new JTextField(15);
-        inputFieldsPanel.add(priceInput);
-
-        controlPanel.add(inputFieldsPanel);
+        controlPanel.add(createInputFieldsPanel());
         controlPanel.add(Box.createVerticalStrut(10));
+        controlPanel.add(createAddPanel());
+        controlPanel.add(Box.createVerticalStrut(10));
+        controlPanel.add(createRemovePanel());
+        controlPanel.add(Box.createVerticalStrut(10));
+        controlPanel.add(createSearchPanel());
+        controlPanel.add(Box.createVerticalStrut(10));
+        controlPanel.add(createSaveLoadPanel());
+        controlPanel.add(Box.createVerticalStrut(10));
+        controlPanel.add(createViewAllPanel());
+        mainPanel.add(controlPanel, BorderLayout.EAST);
+        add(mainPanel);
+    }
+    
+    //MODIFIES: this
+    //EFFECTS: sets up the display area, used as a helper for setUpGUI to reduce lines
+    private JTextArea createDisplayArea(JTextArea area) {
+        area.setEditable(false);
+        area.setFont(new Font("Monospaced", Font.BOLD, 12));
+        area.setBackground(new Color(230, 240, 255));
+        area.setOpaque(false);
+        return area;
+    }
 
-        //Add Buttons Panel
-        JPanel addPanel = new JPanel(new GridLayout(2, 1, 4, 4));
-        addPanel.setBorder(BorderFactory.createTitledBorder("Add"));
+    //EFFECTS: sets up the input fields, used as a helper for setUpGUI to reduce lines
+    private JPanel createInputFieldsPanel() {
+        JPanel panel = new JPanel(new GridLayout(5, 2, 4, 4));
+        panel.setBorder(BorderFactory.createTitledBorder("Card Info"));
+        nameInput = new JTextField(15);
+        conditionInput = new JTextField(15);
+        rarityInput = new JTextField(15);
+        typeInput = new JTextField(15);
+        priceInput = new JTextField(15);
+        panel.add(new JLabel("Card Name:"));
+        panel.add(nameInput);
+        panel.add(new JLabel("Condition:"));
+        panel.add(conditionInput);
+        panel.add(new JLabel("Rarity:"));
+        panel.add(rarityInput);
+        panel.add(new JLabel("Type:"));
+        panel.add(typeInput);
+        panel.add(new JLabel("Price:"));
+        panel.add(priceInput);
+        return panel;
+    }
+
+    //EFFECTS: creates the add panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    private JPanel createAddPanel() {
+        JPanel panel = new JPanel(new GridLayout(2, 1, 4, 4));
+        panel.setBorder(BorderFactory.createTitledBorder("Add"));
         JButton addButton = new JButton("Add to Binder");
         addButton.addActionListener(this::handleAddToBinder);
         JButton addWishListButton = new JButton("Add to WishList");
         addWishListButton.addActionListener(this::handleAddToWishlist);
-        addPanel.add(addButton);
-        addPanel.add(addWishListButton);
-        controlPanel.add(addPanel);
-        controlPanel.add(Box.createVerticalStrut(10));
+        panel.add(addButton);
+        panel.add(addWishListButton);
+        return panel;
+    }
 
-        //Remove Buttons Panel
-        JPanel removePanel = new JPanel(new GridLayout(4, 1, 4, 4));
-        removePanel.setBorder(BorderFactory.createTitledBorder("Remove"));
-
-        JLabel removeLabel = new JLabel("Card Name to Remove:");
+    //EFFECTS: creates the remove panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    private JPanel createRemovePanel() {
+        JPanel panel = new JPanel(new GridLayout(4, 1, 4, 4));
+        panel.setBorder(BorderFactory.createTitledBorder("Remove"));
+        JLabel label = new JLabel("Card Name to Remove:");
         removeInput = new JTextField(12);
+        JButton removeBinder = new JButton("Remove from Binder");
+        JButton removeWishlist = new JButton("Remove from Wishlist");
+        removeBinder.addActionListener(this::handleRemoveFromBinder);
+        removeWishlist.addActionListener(this::handleRemoveFromWishlist);
+        panel.add(label);
+        panel.add(removeInput);
+        panel.add(removeBinder);
+        panel.add(removeWishlist);
+        return panel;
+    }
 
-        JButton removeBinderButton = new JButton("Remove from Binder");
-        removeBinderButton.addActionListener(this::handleRemoveFromBinder);
-
-        JButton removeWishlistButton = new JButton("Remove from Wishlist");
-        removeWishlistButton.addActionListener(this::handleRemoveFromWishlist);
-
-        removePanel.add(removeLabel);
-        removePanel.add(removeInput);
-        removePanel.add(removeBinderButton);
-        removePanel.add(removeWishlistButton);
-        controlPanel.add(removePanel);
-        controlPanel.add(Box.createVerticalStrut(10));
-
-        //Search Panel
-        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
-        searchPanel.add(new JLabel("Search For A Card:"));
-        searchInput = new JTextField(10);
-        searchPanel.add(searchInput);
-        JButton searchButton = new JButton("Search Binder");
-        searchButton.addActionListener(this::handleSearch);
-        searchPanel.add(searchButton);
-        controlPanel.add(searchPanel);
-        controlPanel.add(Box.createVerticalStrut(10));
-
-        // Save and Load
-        JPanel saveLoadPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        saveLoadPanel.setBorder(BorderFactory.createTitledBorder("Smart Save/Load"));
+    //EFFECTS: creates the save/load panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    private JPanel createSaveLoadPanel() {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBorder(BorderFactory.createTitledBorder("Smart Save/Load"));
         JButton saveButton = new JButton("Save");
         JButton loadButton = new JButton("Load");
         saveButton.addActionListener(this::save);
         loadButton.addActionListener(this::load);
-        saveLoadPanel.add(saveButton);
-        saveLoadPanel.add(loadButton);
-        controlPanel.add(saveLoadPanel);
-        controlPanel.add(Box.createVerticalStrut(10));
+        panel.add(saveButton);
+        panel.add(loadButton);
+        return panel;
+    }
 
-        // View all cards in Binder + WishList
-        JPanel viewAllPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        viewAllPanel.setBorder(BorderFactory.createTitledBorder("View Cards"));
-        JButton viewBinderButton = new JButton("View All in Binder");
-        viewBinderButton.addActionListener(this::handleViewBinder);
-        JButton viewWishlistButton = new JButton("View All in Wishlist");
-        viewWishlistButton.addActionListener(this::handleViewWishlist);
-        viewAllPanel.add(viewBinderButton);
-        viewAllPanel.add(viewWishlistButton);
-        controlPanel.add(viewAllPanel);
+    //EFFECTS: creates the viewall panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    private JPanel createViewAllPanel() {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBorder(BorderFactory.createTitledBorder("View Cards"));
+        JButton viewBinder = new JButton("View All in Binder");
+        JButton viewWishlist = new JButton("View All in Wishlist");
+        viewBinder.addActionListener(this::handleViewBinder);
+        viewWishlist.addActionListener(this::handleViewWishlist);
+        panel.add(viewBinder);
+        panel.add(viewWishlist);
+        return panel;
+    }
 
-        add(mainPanel); 
+    //EFFECTS: creates the search panel and adds associated buttons/input fields
+    private JPanel createSearchPanel() {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBorder(BorderFactory.createTitledBorder("Search"));
+        panel.add(new JLabel("Search For A Card:"));
+        searchInput = new JTextField(10);
+        JButton searchButton = new JButton("Search Binder");
+        searchButton.addActionListener(this::handleSearch);
+        panel.add(searchInput);
+        panel.add(searchButton);
+        return panel;
     }
 
     // MODIFIES: this
@@ -274,7 +287,7 @@ public class CollectionNexusJFrame extends JFrame {
         }
     }
 
-    // MODIFIES: this 
+    // MODIFIES: this
     // EFFECT: load current binder and wishlist from JSON file
     private void load(ActionEvent e1) {
         try {
@@ -290,7 +303,7 @@ public class CollectionNexusJFrame extends JFrame {
             displayArea.append("Unable to write to file: " + JSON_STORE_wishlist + "\n");
         }
     }
-    
+
     // MODIFIES: this
     // EFFECTS: Based on the user's input, remove target card from user's binder
     private void handleRemoveFromBinder(ActionEvent e) {
