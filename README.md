@@ -39,13 +39,19 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 
 
 # Phase 4: Task 2
-- Fri Mar 28 13:23:47 PDT 2025
+- Fri Mar 28 13:34:38 PDT 2025
 A card was added by the user.
-- Fri Mar 28 13:23:50 PDT 2025
+- Fri Mar 28 13:34:41 PDT 2025
 User successfully removed a card.
-- Fri Mar 28 13:23:56 PDT 2025
+- Fri Mar 28 13:34:51 PDT 2025
+User's search target was not found.
+- Fri Mar 28 13:34:54 PDT 2025
 User saved Binder and Wishlist
-- Fri Mar 28 13:23:56 PDT 2025
+- Fri Mar 28 13:34:54 PDT 2025
 User saved Binder and Wishlist
-- Fri Mar 28 13:23:58 PDT 2025
-User clicked the view all in binder || view all in wishlist button
+- Fri Mar 28 13:34:55 PDT 2025
+User viewed all cards in binder || all cards in wishlist
+- Fri Mar 28 13:34:59 PDT 2025
+User loaded Binder and Wishlist
+- Fri Mar 28 13:34:59 PDT 2025
+User loaded Binder and Wishlist
