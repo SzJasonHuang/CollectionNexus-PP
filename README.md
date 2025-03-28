@@ -36,3 +36,16 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 - You can find my visual component on the display area.
 - You can save the state of my application by simply clicking the save button. It saves both the user's binder and wishlist.
 - You can reload the state of my application by simply clicking the load button. It loads both the user's binder and wishlist.
+
+
+# Phase 4: Task 2
+- Fri Mar 28 13:23:47 PDT 2025
+A card was added by the user.
+- Fri Mar 28 13:23:50 PDT 2025
+User successfully removed a card.
+- Fri Mar 28 13:23:56 PDT 2025
+User saved Binder and Wishlist
+- Fri Mar 28 13:23:56 PDT 2025
+User saved Binder and Wishlist
+- Fri Mar 28 13:23:58 PDT 2025
+User clicked the view all in binder || view all in wishlist button
