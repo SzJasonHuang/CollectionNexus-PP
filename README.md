@@ -55,3 +55,5 @@ User viewed all cards in binder || all cards in wishlist
 User loaded Binder and Wishlist
 - Fri Mar 28 13:34:59 PDT 2025
 User loaded Binder and Wishlist
+
+![UML_DESIGN_DIAGRAM](data/UML_DESIGN_DIAGRAM.png)
