@@ -2,6 +2,9 @@ package ui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -9,6 +12,7 @@ import javax.swing.*;
 
 import model.Card;
 import model.CardList;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -55,6 +59,19 @@ public class CollectionNexusJFrame extends JFrame {
         // Local Helper
         setUpGUI();
         setVisible(true);
+
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // prevent auto-close
+
+        this.addWindowListener((WindowListener) new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (model.Event event : EventLog.getInstance()) {
+                    System.out.println(event);
+                }
+                System.exit(0);
+            }
+        });
+
     }
 
     // MODIFIES: this
@@ -85,9 +102,10 @@ public class CollectionNexusJFrame extends JFrame {
         mainPanel.add(controlPanel, BorderLayout.EAST);
         add(mainPanel);
     }
-    
-    //MODIFIES: this
-    //EFFECTS: sets up the display area, used as a helper for setUpGUI to reduce lines
+
+    // MODIFIES: this
+    // EFFECTS: sets up the display area, used as a helper for setUpGUI to reduce
+    // lines
     private JTextArea createDisplayArea(JTextArea area) {
         area.setEditable(false);
         area.setFont(new Font("Monospaced", Font.BOLD, 12));
@@ -96,7 +114,8 @@ public class CollectionNexusJFrame extends JFrame {
         return area;
     }
 
-    //EFFECTS: sets up the input fields, used as a helper for setUpGUI to reduce lines
+    // EFFECTS: sets up the input fields, used as a helper for setUpGUI to reduce
+    // lines
     private JPanel createInputFieldsPanel() {
         JPanel panel = new JPanel(new GridLayout(5, 2, 4, 4));
         panel.setBorder(BorderFactory.createTitledBorder("Card Info"));
@@ -118,7 +137,8 @@ public class CollectionNexusJFrame extends JFrame {
         return panel;
     }
 
-    //EFFECTS: creates the add panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    // EFFECTS: creates the add panel and adds associated buttons, used as a helper
+    // for setUpGUI to reduce lines
     private JPanel createAddPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 1, 4, 4));
         panel.setBorder(BorderFactory.createTitledBorder("Add"));
@@ -131,7 +151,8 @@ public class CollectionNexusJFrame extends JFrame {
         return panel;
     }
 
-    //EFFECTS: creates the remove panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    // EFFECTS: creates the remove panel and adds associated buttons, used as a
+    // helper for setUpGUI to reduce lines
     private JPanel createRemovePanel() {
         JPanel panel = new JPanel(new GridLayout(4, 1, 4, 4));
         panel.setBorder(BorderFactory.createTitledBorder("Remove"));
@@ -148,7 +169,8 @@ public class CollectionNexusJFrame extends JFrame {
         return panel;
     }
 
-    //EFFECTS: creates the save/load panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    // EFFECTS: creates the save/load panel and adds associated buttons, used as a
+    // helper for setUpGUI to reduce lines
     private JPanel createSaveLoadPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBorder(BorderFactory.createTitledBorder("Smart Save/Load"));
@@ -161,7 +183,8 @@ public class CollectionNexusJFrame extends JFrame {
         return panel;
     }
 
-    //EFFECTS: creates the viewall panel and adds associated buttons, used as a helper for setUpGUI to reduce lines
+    // EFFECTS: creates the viewall panel and adds associated buttons, used as a
+    // helper for setUpGUI to reduce lines
     private JPanel createViewAllPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBorder(BorderFactory.createTitledBorder("View Cards"));
@@ -174,7 +197,7 @@ public class CollectionNexusJFrame extends JFrame {
         return panel;
     }
 
-    //EFFECTS: creates the search panel and adds associated buttons/input fields
+    // EFFECTS: creates the search panel and adds associated buttons/input fields
     private JPanel createSearchPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBorder(BorderFactory.createTitledBorder("Search"));

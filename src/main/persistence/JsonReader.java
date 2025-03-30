@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 
 import model.Card;
 import model.CardList;
+import model.Event;
+import model.EventLog;
+
 import org.json.*;
 
 //Represents a reader that reads CardList from JSON Data stored in file
@@ -23,7 +26,9 @@ public class JsonReader {
     public CardList read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("User loaded Binder and Wishlist"));
         return parseCardList(jsonObject);
+
     }
 
     // EFFECTS: reads source file as string and returns it

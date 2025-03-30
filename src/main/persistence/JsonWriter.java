@@ -3,6 +3,8 @@ package persistence;
 import org.json.*;
 import java.io.*;
 import model.CardList;
+import model.Event;
+import model.EventLog;
 
 // Represents a writer that writes JSON representation of CardList to file.
 public class JsonWriter {
@@ -27,6 +29,7 @@ public class JsonWriter {
     public void write(CardList cl) {
         JSONObject json = cl.toJson();
         saveToFile(json.toString(TAB));
+        EventLog.getInstance().logEvent(new Event("User saved Binder and Wishlist"));
     }
 
     // MODIFIES: this

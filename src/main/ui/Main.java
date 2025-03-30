@@ -3,6 +3,9 @@ package ui;
 import java.io.FileNotFoundException;
 import javax.swing.SwingUtilities;
 
+import model.Event;
+import model.EventLog;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -11,10 +14,9 @@ public class Main {
             @Override
             public void run() {
                 new CollectionNexusJFrame();
-            }
 
+            }
         });
 
     }
-
 }

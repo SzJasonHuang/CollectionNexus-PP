@@ -21,9 +21,11 @@ public class CardList implements Writable {
     public Boolean addCard(Card newcard) {
         if (mybinder.contains(newcard)) {
             newcard.increaseQuantity();
+            EventLog.getInstance().logEvent(new Event("Duplicate Added."));
             return false;
         } else {
             mybinder.add(newcard);
+            EventLog.getInstance().logEvent(new Event("A card was added by the user."));
             return true;
         }
     }
@@ -34,9 +36,11 @@ public class CardList implements Writable {
 
         for (Card targetcard : mybinder) {
             if (targetcard.getName().equals(cardname)) {
+                EventLog.getInstance().logEvent(new Event("User's search target was found."));
                 return targetcard;
             }
         }
+        EventLog.getInstance().logEvent(new Event("User's search target was not found."));
         return null;
     }
 
@@ -55,6 +59,7 @@ public class CardList implements Writable {
 
     // EFFECTS: returns the user's collection.
     public ArrayList<Card> getMyBinder() {
+        EventLog.getInstance().logEvent(new Event("User viewed all cards in binder || all cards in wishlist"));
         return mybinder;
     }
 
@@ -66,10 +71,11 @@ public class CardList implements Writable {
             Card card = iterator.next();
             if (card.getName().equalsIgnoreCase(target)) {
                 iterator.remove();
+                EventLog.getInstance().logEvent(new Event("User successfully removed a card."));
                 return true;
             }
         }
-
+        EventLog.getInstance().logEvent(new Event("Remove of the desired card was unsuccessful"));
         return false;
     }
 

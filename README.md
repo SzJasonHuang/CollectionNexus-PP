@@ -56,4 +56,6 @@ User loaded Binder and Wishlist
 - Fri Mar 28 13:34:59 PDT 2025
 User loaded Binder and Wishlist
 
+# Phase 4: Task 3
 ![UML_DESIGN_DIAGRAM](data/UML_Design_Diagram.jpg)
+- Since multiple parts of the application (Such as JsonReader, JsonWriter and CardLst) wants to react to event being logged. I want to used what I learned about the Observer Pattern in class and make EventLog an observable. Components that needs to their activities logged should be an observer. Any additional features I add to my app would just be an additional observer that observes the EventLog. 

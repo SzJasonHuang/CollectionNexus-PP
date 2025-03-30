@@ -1,23 +1,4 @@
 {
-    "cards": [
-        {
-            "sold": false,
-            "condition": "d",
-            "quantity": 1,
-            "price": 1,
-            "name": "d",
-            "type": "d",
-            "rarity": "d"
-        },
-        {
-            "sold": false,
-            "condition": "d",
-            "quantity": 1,
-            "price": 1,
-            "name": "d",
-            "type": "2",
-            "rarity": "d"
-        }
-    ],
+    "cards": [],
     "name": "binder"
 }
