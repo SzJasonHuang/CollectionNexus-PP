@@ -56,4 +56,4 @@ User loaded Binder and Wishlist
 - Fri Mar 28 13:34:59 PDT 2025
 User loaded Binder and Wishlist
 
-![UML_DESIGN_DIAGRAM](data/UML_Design_Diagram.png)
+![UML_DESIGN_DIAGRAM](data/UML_Design_Diagram.jpg)
