@@ -1,7 +1,6 @@
 package ui;
 
 import java.awt.*;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
