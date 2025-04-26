@@ -279,6 +279,7 @@ public class CollectionNexusJFrame extends JFrame {
         }
     }
 
+    
     // MODIFIES: this
     // EFFECT: clears the input box for user
     private void clearInputBox() {
