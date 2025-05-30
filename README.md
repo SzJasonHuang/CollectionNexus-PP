@@ -41,7 +41,7 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 
 ---
 
-# Phase 4: Task 2 – Example Event Log
+# A demonstration of the EventLog Feature
 
 - **Fri Mar 28 13:34:38 PDT 2025**: A card was added by the user.
 - **Fri Mar 28 13:34:41 PDT 2025**: User successfully removed a card.
@@ -49,16 +49,7 @@ As a passionate collector of basketball cards and Magic: The Gathering cards, I 
 - **Fri Mar 28 13:34:54 PDT 2025**: User saved Binder and Wishlist.
 - **Fri Mar 28 13:34:55 PDT 2025**: User viewed all cards in binder and wishlist.
 - **Fri Mar 28 13:34:59 PDT 2025**: User loaded Binder and Wishlist.
-
+- 
 ---
 
-# Phase 4: Task 3 – Design and Patterns
 
-![UML Design Diagram](data/UML_Design_Diagram.jpg)
-
-To handle event logging, I decided to use the **Observer Pattern**.  
-Since multiple components (such as `JsonReader`, `JsonWriter`, and `CardLst`) need to react to events being logged, I made `EventLog` an observable.  
-Components that need to log activities act as observers.  
-This design also allows future features to easily integrate: new observers can simply subscribe to `EventLog` without altering the existing structure.
-
----
